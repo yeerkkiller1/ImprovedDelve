@@ -1,0 +1,7 @@
+2014-12-31 10:43:51: -- Analysis Started by On File Change Incremental
+2014-12-31 10:43:51: Changes: 2, Conflicts: 0, CopyTime: 0, CopyState: 0/0, Errors: 0, All: 150
+2014-12-31 10:43:51: Left to Right: Rename/Move File/Folder: 2 
+2014-12-31 10:43:51: == Sync Started by On File Change Incremental
+2014-12-31 10:43:51: Move Folder sftp://104.236.137.119/root/js/UizeSite/New folder -> sftp://104.236.137.119/root/js/UizeSite/Delve
+2014-12-31 10:43:51: == Sync Complete. Time: 00:00:00, Speed: 0 bytes/s, OK: 2, Errors: 0
+2014-12-31 10:43:53: 

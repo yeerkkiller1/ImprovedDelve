@@ -1,0 +1,31 @@
+2015-01-02 17:24:01: -- Analysis Started by On File Change Incremental
+2015-01-02 17:24:01: Changes: 22, Conflicts: 0, CopyTime: 0, CopyState: 0/0, Errors: 0, All: 189
+2015-01-02 17:24:01: Left to Right: Copy File: 22 
+2015-01-02 17:24:01: == Sync Started by On File Change Incremental
+2015-01-02 17:24:01: Create Folder 'sftp://104.236.137.119/root/.git'
+2015-01-02 17:24:01: Create Folder 'sftp://104.236.137.119/root/.git/hooks'
+2015-01-02 17:24:01: Create Folder 'sftp://104.236.137.119/root/.git/info'
+2015-01-02 17:24:01: Create Folder 'sftp://104.236.137.119/root/.git/objects'
+2015-01-02 17:24:01: Create Folder 'sftp://104.236.137.119/root/.git/objects/info'
+2015-01-02 17:24:01: Create Folder 'sftp://104.236.137.119/root/.git/objects/pack'
+2015-01-02 17:24:01: Create Folder 'sftp://104.236.137.119/root/.git/refs'
+2015-01-02 17:24:01: Create Folder 'sftp://104.236.137.119/root/.git/refs/heads'
+2015-01-02 17:24:01: Create Folder 'sftp://104.236.137.119/root/.git/refs/tags'
+2015-01-02 17:24:01: Copy New 'C:/Go/bin/.git/config' -> 'sftp://104.236.137.119/root/.git/config'
+2015-01-02 17:24:01: Copy New 'C:/Go/bin/.git/description' -> 'sftp://104.236.137.119/root/.git/description'
+2015-01-02 17:24:01: Copy New 'C:/Go/bin/.git/HEAD' -> 'sftp://104.236.137.119/root/.git/HEAD'
+2015-01-02 17:24:01: Copy New 'C:/Go/bin/.git/hooks/applypatch-msg.sample' -> 'sftp://104.236.137.119/root/.git/hooks/applypatch-msg.sample'
+2015-01-02 17:24:01: Copy New 'C:/Go/bin/.git/hooks/commit-msg.sample' -> 'sftp://104.236.137.119/root/.git/hooks/commit-msg.sample'
+2015-01-02 17:24:01: Copy New 'C:/Go/bin/.git/hooks/post-update.sample' -> 'sftp://104.236.137.119/root/.git/hooks/post-update.sample'
+2015-01-02 17:24:01: Copy New 'C:/Go/bin/.git/hooks/pre-applypatch.sample' -> 'sftp://104.236.137.119/root/.git/hooks/pre-applypatch.sample'
+2015-01-02 17:24:01: Copy New 'C:/Go/bin/.git/hooks/pre-commit.sample' -> 'sftp://104.236.137.119/root/.git/hooks/pre-commit.sample'
+2015-01-02 17:24:01: Copy New 'C:/Go/bin/.git/hooks/pre-push.sample' -> 'sftp://104.236.137.119/root/.git/hooks/pre-push.sample'
+2015-01-02 17:24:01: Copy New 'C:/Go/bin/.git/hooks/pre-rebase.sample' -> 'sftp://104.236.137.119/root/.git/hooks/pre-rebase.sample'
+2015-01-02 17:24:01: Copy New 'C:/Go/bin/.git/hooks/prepare-commit-msg.sample' -> 'sftp://104.236.137.119/root/.git/hooks/prepare-commit-msg.sample'
+2015-01-02 17:24:01: Copy New 'C:/Go/bin/.git/hooks/update.sample' -> 'sftp://104.236.137.119/root/.git/hooks/update.sample'
+2015-01-02 17:24:02: Copy New 'C:/Go/bin/.git/info/exclude' -> 'sftp://104.236.137.119/root/.git/info/exclude'
+2015-01-02 17:24:02: == Sync Complete. Time: 00:00:01, Speed: 24.1 KB/s, OK: 22, Errors: 0
+2015-01-02 17:24:03: -- Analysis Started by On File Change PostSync Re-Analyze
+2015-01-02 17:24:03: Changes: 0, Conflicts: 0, CopyTime: 0, CopyState: 0/0, Errors: 0, All: 189
+2015-01-02 17:24:03: -- Analysis Complete. Time 00:00:02, Speed: 20 files/s
+2015-01-02 17:24:03: 

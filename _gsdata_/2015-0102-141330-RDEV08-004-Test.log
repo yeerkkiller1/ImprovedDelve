@@ -1,0 +1,7 @@
+2015-01-02 14:13:34: -- Analysis Started by On File Change Incremental
+2015-01-02 14:13:34: Changes: 2, Conflicts: 0, CopyTime: 0, CopyState: 0/0, Errors: 0, All: 166
+2015-01-02 14:13:34: Left to Right: Rename/Move File/Folder: 2 
+2015-01-02 14:13:34: == Sync Started by On File Change Incremental
+2015-01-02 14:13:34: Move File sftp://104.236.137.119/root/quize/DelvePageHtml.js -> sftp://104.236.137.119/root/js/UizeSite/DelvePageHtml.js
+2015-01-02 14:13:34: == Sync Complete. Time: 00:00:00, Speed: 0 bytes/s, OK: 2, Errors: 0
+2015-01-02 14:13:35: 

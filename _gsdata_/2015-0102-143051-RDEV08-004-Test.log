@@ -1,0 +1,7 @@
+2015-01-02 14:30:55: -- Analysis Started by On File Change Incremental
+2015-01-02 14:30:55: Changes: 1, Conflicts: 0, CopyTime: 0, CopyState: 0/0, Errors: 0, All: 167
+2015-01-02 14:30:55: Left to Right: Copy File: 1 
+2015-01-02 14:30:55: == Sync Started by On File Change Incremental
+2015-01-02 14:30:55: Copy Over 'C:/Go/bin/js/UizeSite/Delve/library.js' -> 'sftp://104.236.137.119/root/js/UizeSite/Delve/library.js'
+2015-01-02 14:30:55: == Sync Complete. Time: 00:00:00, Speed: 0 bytes/s, OK: 1, Errors: 0
+2015-01-02 14:30:56: 

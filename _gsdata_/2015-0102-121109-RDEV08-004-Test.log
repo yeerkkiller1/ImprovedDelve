@@ -1,0 +1,7 @@
+2015-01-02 12:11:13: -- Analysis Started by On File Change Incremental
+2015-01-02 12:11:13: Changes: 1, Conflicts: 0, CopyTime: 0, CopyState: 0/0, Errors: 0, All: 156
+2015-01-02 12:11:13: Left to Right: Copy File: 1 
+2015-01-02 12:11:13: == Sync Started by On File Change Incremental
+2015-01-02 12:11:13: Copy New 'C:/Go/bin/quize/New Text Document.txt' -> 'sftp://104.236.137.119/root/quize/New Text Document.txt'
+2015-01-02 12:11:13: == Sync Complete. Time: 00:00:00, Speed: 0 bytes/s, OK: 1, Errors: 0
+2015-01-02 12:11:14: 
