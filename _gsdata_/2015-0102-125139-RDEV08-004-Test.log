@@ -1,7 +1,0 @@
-2015-01-02 12:51:43: -- Analysis Started by On File Change Incremental
-2015-01-02 12:51:43: Changes: 2, Conflicts: 0, CopyTime: 0, CopyState: 0/0, Errors: 0, All: 162
-2015-01-02 12:51:43: Left to Right: Rename/Move File/Folder: 2 
-2015-01-02 12:51:43: == Sync Started by On File Change Incremental
-2015-01-02 12:51:43: Move File sftp://104.236.137.119/root/quize/bindingHandlers - Copy.js -> sftp://104.236.137.119/root/quize/callStacker.css
-2015-01-02 12:51:43: == Sync Complete. Time: 00:00:00, Speed: 0 bytes/s, OK: 2, Errors: 0
-2015-01-02 12:51:44: 

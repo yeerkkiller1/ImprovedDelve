@@ -44,8 +44,6 @@ function makeCallstackUI(event, callstack) {
             +'\n'+   "}"
             +'\n'+   "var stack = stackValues(event, callstack.map(fncValue));"
             +'\n'+   "var elem = document.getElementById(uid);"
-            +'\n'+   "console.log(JSON.stringify(stack))"
-            +'\n'+   "console.log(elem)"
             +'\n'+   "ko.applyBindings(stack, elem);"
     };
 }

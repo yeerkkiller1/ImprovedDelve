@@ -3940,9 +3940,9 @@ Uize.module({name: 'Uize.Widget.Tree',builder: function(c_a) {
                     m.traverseTree({itemHandler: function(c_f, c_e, c_q) {
                             m.setItemExpanded(c_e, c_q < c_p);
                         },itemSpecifier: c_e});
-                },setItemExpanded: function(c_e, c_r) {
-                    var c_f = this.getItemFromSpecifier(c_e);
-                    c_f.expanded = typeof c_r == 'boolean' ? c_r : c_f.expanded === c_c;
+                },setItemExpanded: function(c_e, expanded) {
+                    var item = this.getItemFromSpecifier(c_e);
+                    item.expanded = expanded || !item.expanded;
                 },
                 collapseAllBut: function(c_s) {
                     var m = this, c_k = m.c_k;
@@ -3982,7 +3982,7 @@ Uize.module({name: 'Uize.Widget.Tree',builder: function(c_a) {
                             m.insertUi();
                         }
                     }},c_E: {name: 'value',
-                    value: []}},set: {built: c_c}});
+                    value: []}},set: {built: false}});
     }});
 
 Uize.module({name: 'Uize.Widget.Tree.ListAbstract',required: ['Uize.Dom.Basics', 'Uize.Tooltip', 'Uize.Util.Html.Encode'],builder: function(d_a) {
@@ -4073,14 +4073,15 @@ Uize.module({name: 'Uize.Widgets.NavTree.List.Widget',superclass: 'Uize.Widget.T
         var e_b = Uize.Dom.Classes;
         return e_a.subclass({mixins: Uize.Widget.mV2,instanceMethods: {setItemExpanded: function(e_c, e_d) {
                     var m = this;
+
+                    e_a.doMy(m, 'setItemExpanded', [e_c, e_d]);
+
                     if (m.isWired) {
                         var e_e = m.getItemFromSpecifier(e_c), e_f = m.getNode(e_c + 'TogglerLink');
-                        e_d = e_e.expanded = typeof e_d == 'boolean' ? e_d : e_e.expanded === false;
+                        e_d = e_e.expanded;
                         m.setNodeProperties(e_f, {title: m.getTogglerTitle(e_e)});
                         e_b.setState(e_f, [m.cssClass('collapsed'), m.cssClass('expanded')], e_d);
                         m.displayNode(e_c + 'Children', e_d);
-                    } else {
-                        e_a.doMy(m, 'setItemExpanded', [e_c, e_d]);
                     }
                 }},set: {built: true,html: Uize.Widgets.NavTree.List.Html},staticProperties: {cssModule: Uize.Widgets.NavTree.List.Css}});
     }});
@@ -4157,9 +4158,19 @@ Uize.module({name: 'UizeSite.Delve',required: ['UizeSite.ModulesTree', 'Uize.Wid
                         var d_u = function(d_v, d_w) {
                             var d_x = d_v.children, d_y = Uize.keys(d_x).sort();
                             d_w++;
-                            return {title: d_z(m, d_v),link: d_o,expanded: d_w == 1,objectPath: d_A(m, d_v),items: d_y.length ? Uize.map(d_y, function(d_B) {
-                                    return d_u(d_x[d_B], d_w)
-                                }) : undefined};
+                            var obj = {
+                                    title: d_z(m, d_v),
+                                    link: d_o,
+                                    expanded: d_w == 1,
+                                    objectPath: d_A(m, d_v),
+                                    items: d_y.length ? Uize.map(d_y, function(d_B) {
+                                        return d_u(d_x[d_B], d_w)
+                                    }) : undefined
+                                };
+                            forceObservable(obj, "expanded");
+                            //Persist entire pinned path and display to user so they can remove/add them
+                            persistObserv(obj.expandedObserv, obj.objectPath);
+                            return obj;
                         };
                         d_r[0] = d_u(d_s, 0);
                     }
@@ -4335,11 +4346,11 @@ Uize.module({name: 'UizeSite.Delve',required: ['UizeSite.ModulesTree', 'Uize.Wid
                 m.setNodeProperties('windowInspected', {title: d_bs ? d_bs.document.title : ''});
             }
         }
-        function d_bt(m, d_bu) {
-            var d_bs = m.d_bs;
-            if (d_bs && d_bu) {
+        function evalInContext(context, expression) {
+            var d_bs = context.d_bs;
+            if (d_bs && expression) {
                 try {
-                    return d_bs.eval('(' + d_bu + ')')
+                    return d_bs.eval('(' + expression + ')')
                 } catch (d_bv) {
                 }
             }
@@ -4462,7 +4473,7 @@ Uize.module({name: 'UizeSite.Delve',required: ['UizeSite.ModulesTree', 'Uize.Wid
             }
         }
         function d_by(m, d_bx) {
-            return typeof d_bx == 'string' ? d_bt(m, d_bx) : d_bx;
+            return typeof d_bx == 'string' ? evalInContext(m, d_bx) : d_bx;
         }
         function d_T(m, d_b8) {
             var d_r = [], d_b9 = d_S(m);
@@ -4830,7 +4841,8 @@ Uize.module({name: 'UizeSite.Delve',required: ['UizeSite.ModulesTree', 'Uize.Wid
                     if (!m.isWired) {
                         m.wireNode(window, 'unload', function() {
                             d_do(m);
-                            m.set({objectInspectedPath: ''});
+                            //Uhh? Why?
+                            //m.set({objectInspectedPath: ''});
                         });
                         m.wireNode('refresh', 'click', function() {
                             d_da(m)
@@ -4895,18 +4907,39 @@ Uize.module({name: 'UizeSite.Delve',required: ['UizeSite.ModulesTree', 'Uize.Wid
                             d_cm(m, 'Summary of all available queries', 'SUMMARY OF ALL AVAILABLE QUERIES FOR: ' + m.d_bs.location.href + '\n' + d_l + '\n' + d_dB.join('\n'));
                         });
                         d_a.doMy(m, 'wireUi');
-                        m.set({d_bm: d_bL(m)});
+                        addObservToUize(m, 'objectInspectedPath', function filter(x){!x;});
+                        persistObserv(m.objectInspectedPathObserv, 'objectInspectedPath');
+                        if(!m.objectInspectedPathObserv()) {
+                            m.objectInspectedPathObserv(d_bL(m));
+                        }
                     }
                 },treeItemClicked: function() {
                     this.set({d_bm: this.d_dt});
-                }},stateProperties: {d_c9: {name: 'baseUrl',value: ''},d_ba: {onChange: d_9},d_bj: {name: 'objectInspected',onChange: [d_bd, d_bh]},d_bm: {name: 'objectInspectedPath',conformer: function(d_dF) {
-                        return (!d_by(this, d_dF) && 
-                        this.d_bs && this.d_bs.document.getElementById(d_dF) ? 'document.getElementById (\'' + d_dF + '\')' : d_dF);
-                    },onChange: [function() {
+                }},stateProperties: {
+                    d_c9: {name: 'baseUrl',value: ''},
+                    d_ba: {onChange: d_9},
+                    d_bj: {name: 'objectInspected',onChange: [d_bd, d_bh]},
+                    d_bm: {
+                        name: 'objectInspectedPath',
+                        conformer: function(d_dF) {
+                            return (!d_by(this, d_dF) && this.d_bs && this.d_bs.document.getElementById(d_dF) ? 'document.getElementById (\'' + d_dF + '\')' : d_dF);
+                        },onChange: [function() {
                             this.set({d_bj: d_by(this, this.d_bm)})
-                        }, d_bk],value: ''},d_bp: {name: 'treeListQuery',onChange: [d_bn, d_bq],value: 'widgetsOnPageTree'},d_bs: {name: 'window',onChange: [function() {
+                        }, d_bk],value: ''
+                    },
+                    d_bp: {
+                        name: 'treeListQuery',
+                        onChange: [d_bn, d_bq],
+                        value: 'widgetsOnPageTree'
+                    },
+                    d_bs: {
+                        name: 'window',
+                        onChange: [function() {
                             this.d_bN = d_b
-                        }, d_bn, d_br]}}});
+                        }, d_bn, d_br]
+                    }
+                }
+            });
     }});
 
 Uize.module('UizeSite.Delve.library');

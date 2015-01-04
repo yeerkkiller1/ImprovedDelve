@@ -1,7 +1,0 @@
-2015-01-02 14:16:10: -- Analysis Started by On File Change Incremental
-2015-01-02 14:16:10: Changes: 1, Conflicts: 0, CopyTime: 0, CopyState: 0/0, Errors: 0, All: 166
-2015-01-02 14:16:10: Left to Right: Delete File: 1 
-2015-01-02 14:16:10: == Sync Started by On File Change Incremental
-2015-01-02 14:16:10: Delete File 'sftp://104.236.137.119/root/quize/require.js'
-2015-01-02 14:16:10: == Sync Complete. Time: 00:00:00, Speed: 0 bytes/s, OK: 1, Errors: 0
-2015-01-02 14:16:11: 

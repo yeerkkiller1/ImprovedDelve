@@ -1,7 +1,0 @@
-2015-01-02 12:51:34: -- Analysis Started by On File Change Incremental
-2015-01-02 12:51:34: Changes: 1, Conflicts: 0, CopyTime: 0, CopyState: 0/0, Errors: 0, All: 161
-2015-01-02 12:51:34: Left to Right: Copy File: 1 
-2015-01-02 12:51:34: == Sync Started by On File Change Incremental
-2015-01-02 12:51:34: Copy New 'C:/Go/bin/quize/bindingHandlers - Copy.js' -> 'sftp://104.236.137.119/root/quize/bindingHandlers - Copy.js'
-2015-01-02 12:51:34: == Sync Complete. Time: 00:00:00, Speed: 0 bytes/s, OK: 1, Errors: 0
-2015-01-02 12:51:35: 

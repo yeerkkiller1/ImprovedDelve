@@ -1,7 +1,0 @@
-2015-01-02 15:10:07: -- Analysis Started by On File Change Incremental
-2015-01-02 15:10:07: Changes: 1, Conflicts: 0, CopyTime: 0, CopyState: 0/0, Errors: 0, All: 167
-2015-01-02 15:10:07: Left to Right: Copy File: 1 
-2015-01-02 15:10:07: == Sync Started by On File Change Incremental
-2015-01-02 15:10:07: Copy Over 'C:/Go/bin/quize/callStacker.js' -> 'sftp://104.236.137.119/root/quize/callStacker.js'
-2015-01-02 15:10:07: == Sync Complete. Time: 00:00:00, Speed: 0 bytes/s, OK: 1, Errors: 0
-2015-01-02 15:10:08: 

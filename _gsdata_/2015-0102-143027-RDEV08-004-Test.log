@@ -1,7 +1,0 @@
-2015-01-02 14:30:31: -- Analysis Started by On File Change Incremental
-2015-01-02 14:30:31: Changes: 1, Conflicts: 0, CopyTime: 0, CopyState: 0/0, Errors: 0, All: 167
-2015-01-02 14:30:31: Left to Right: Copy File: 1 
-2015-01-02 14:30:31: == Sync Started by On File Change Incremental
-2015-01-02 14:30:31: Copy New 'C:/Go/bin/js/UizeSite/DelvePageHtml.js' -> 'sftp://104.236.137.119/root/js/UizeSite/DelvePageHtml.js'
-2015-01-02 14:30:31: == Sync Complete. Time: 00:00:00, Speed: 0 bytes/s, OK: 1, Errors: 0
-2015-01-02 14:30:32: 
