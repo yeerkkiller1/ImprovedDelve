@@ -20,8 +20,8 @@ function makeCallstackUI(event, callstack) {
     return {
         html: div,
         script: 
-                     "var callstack = " + JSON.stringify(callstack) + ";"
-            +'\n'+   "var event = '" + event + "';"
+                     "var callstack = " + JSON.stringify(callstack).replace(/'/g, "\\'") + ";"
+            +'\n'+   "var event = '" + event.replace(/'/g, "\\'") + "';"
             +'\n'+   "var uid = '" + uid + "';"
             +'\n'+   "function stackValues(event, fncs) {"
             +'\n'+   "    var obj = {"
@@ -39,7 +39,7 @@ function makeCallstackUI(event, callstack) {
             +'\n'+   "function fncValue(text) {"
             +'\n'+   "    return {"
             +'\n'+   "        text: text,"
-            +'\n'+   "        rating: ko.observable('0') //'-1' is bad, '+1' is good (is a string so checked works properly, not really continous anyway though)"
+            +'\n'+   "        rating: ko.observable(0) //-1 is bad, +1 is good (is a string so checked works properly, not really continous anyway though)"
             +'\n'+   "    };"
             +'\n'+   "}"
             +'\n'+   "var stack = stackValues(event, callstack.map(fncValue));"

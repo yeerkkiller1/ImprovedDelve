@@ -3817,7 +3817,7 @@ Uize.module({name: 'Uize.Widgets.Buttons.Clear.Widget',superclass: 'Uize.Widgets
 Uize.module({name: 'Uize.Widgets.Log.Css',superclass: 'Uize.Dom.CssModule',builder: function(c_a) {
         'use strict';
         return c_a.subclass({staticProperties: {css: function(c_b) {
-                    return '.Uize_Widgets_Log_Css { position: relative; width: 100%; height: 185px; } .Uize_Widgets_Log_Css-contents { position: absolute; left: 0; top: 0; right: 0; bottom: 0; } .Uize_Widgets_Log_Css-heading { position: relative; text-align: center; height: 17px; } .Uize_Widgets_Log_Css-heading span { letter-spacing: 2px; } .Uize_Widgets_Log_Css-topRightButton { position: absolute; right: 2px; top: 2px; } .Uize_Widgets_Log_Css-body { position: absolute; padding: 0; left: 0; top: 29px; right: 0; bottom: 0; } .Uize_Widgets_Log_Css-messages { position: absolute; left: 2px; top: 0; right: 2px; bottom: 2px; font-family: Courier; white-space: pre; tab-size: 3; font-size: 10px; color: #000; border: 1px solid #ddd; padding: 4px; overflow: auto; } ';
+                    return '.Uize_Widgets_Log_Css { position: relative; width: 100%; height: 185px; } .Uize_Widgets_Log_Css-contents { position: absolute; left: 0; top: 0; right: 0; bottom: 0; } .Uize_Widgets_Log_Css-heading { position: relative; text-align: center; height: 17px; } .Uize_Widgets_Log_Css-heading span { letter-spacing: 2px; } .Uize_Widgets_Log_Css-topRightButton { position: absolute; right: 2px; top: 2px; } .Uize_Widgets_Log_Css-body { position: absolute; padding: 0; left: 0; top: 29px; right: 0; bottom: 0; } .Uize_Widgets_Log_Css-messages { position: absolute; left: 2px; top: 0; right: 2px; bottom: 2px; tab-size: 3; font-size: 12px; color: #000; border: 1px solid #ddd; padding: 4px; overflow: auto; } ';
                 }}});
     }});
 
@@ -3890,11 +3890,11 @@ Uize.module({name: 'Uize.Widgets.Log.InstanceEvents.Widget',superclass: 'Uize.Wi
                                     }
                                 },'Changed.*': function(f_g) {
                                     
-                                    m.log(m.localize('propertiesChangedEvent') + ': ' + Uize.Json.to(f_g.properties, 'mini'));
-                                    m.injectNodeHtml('messages', "<div style='background-color: green'> I like turtles </div>");
+                                    //My log is better, so ima use it
+                                    //m.log();
 
                                     //injectNodeHtml didn't work, and this is a better solution anyway.
-                                    var callstackUI = makeCallstackUI('test', getCallstack());
+                                    var callstackUI = makeCallstackUI(m.localize('propertiesChangedEvent') + ': ' + Uize.Json.to(f_g.properties, 'mini'), getCallstack());
 
                                     var messages = document.getElementById(m.nodeId() + "-messages");
 
@@ -3940,9 +3940,10 @@ Uize.module({name: 'Uize.Widget.Tree',builder: function(c_a) {
                     m.traverseTree({itemHandler: function(c_f, c_e, c_q) {
                             m.setItemExpanded(c_e, c_q < c_p);
                         },itemSpecifier: c_e});
-                },setItemExpanded: function(c_e, expanded) {
-                    var item = this.getItemFromSpecifier(c_e);
-                    item.expanded = expanded || !item.expanded;
+                },setItemExpanded: function(itemSpecifier, expanded) {
+                    var item = this.getItemFromSpecifier(itemSpecifier);
+                    //Set the given value, or toggle it if nothing is given
+                    item.expanded = typeof expanded == 'boolean' ? expanded : !item.expanded;
                 },
                 collapseAllBut: function(c_s) {
                     var m = this, c_k = m.c_k;
@@ -4071,7 +4072,8 @@ Uize.module({name: 'Uize.Widgets.NavTree.List.Html',required: ['Uize.Str.Repeat'
 Uize.module({name: 'Uize.Widgets.NavTree.List.Widget',superclass: 'Uize.Widget.Tree.ListAbstract',required: ['Uize.Widget.mV2', 'Uize.Widgets.NavTree.List.Html', 'Uize.Widgets.NavTree.List.Css', 'Uize.Dom.Classes'],builder: function(e_a) {
         'use strict';
         var e_b = Uize.Dom.Classes;
-        return e_a.subclass({mixins: Uize.Widget.mV2,instanceMethods: {setItemExpanded: function(e_c, e_d) {
+        return e_a.subclass({mixins: Uize.Widget.mV2,instanceMethods: {
+            setItemExpanded: function(e_c, e_d) {
                     var m = this;
 
                     e_a.doMy(m, 'setItemExpanded', [e_c, e_d]);
@@ -4083,7 +4085,15 @@ Uize.module({name: 'Uize.Widgets.NavTree.List.Widget',superclass: 'Uize.Widget.T
                         e_b.setState(e_f, [m.cssClass('collapsed'), m.cssClass('expanded')], e_d);
                         m.displayNode(e_c + 'Children', e_d);
                     }
-                }},set: {built: true,html: Uize.Widgets.NavTree.List.Html},staticProperties: {cssModule: Uize.Widgets.NavTree.List.Css}});
+                }
+            },
+            set: {
+                built: true,html: Uize.Widgets.NavTree.List.Html
+            },
+            staticProperties: {
+                cssModule: Uize.Widgets.NavTree.List.Css
+            }
+        });
     }});
 
 Uize.module('Uize.Widgets.Tooltip');
@@ -4151,11 +4161,12 @@ Uize.module({name: 'UizeSite.Delve',required: ['UizeSite.ModulesTree', 'Uize.Wid
         function d_e(d_f) {
             return 'outerHTML' in d_f ? d_f.outerHTML : new XMLSerializer().serializeToString(d_f);
         }
+
         var d_g = {}, d_h = {}, d_i = Uize.lookup(Uize.Data.PathsTree.toList(UizeSite.ModulesTree(), '.'), 1, true), d_j = Uize.lookup(['Array', 'Boolean', 'Function', 'Number', 'Object', 'RegExp', 'String', 'Window', 'XMLHttpRequest'], 1, true), d_k = '-- object is undefined, not valid, or is not loaded on page --', 
         d_l = '------------------------------------------------------------------------------', d_m = {d_n: '- - - - - - - - - - - - - - - - - - - - - - - - - - - -'}, d_o = 'javascript:page.treeItemClicked ()', d_p = {widgetsOnPageTree: {d_n: 'All widgets on the page, as a tree',d_q: function() {
                     var m = this, d_r = [], d_s = d_t(m);
                     if (d_s) {
-                        var d_u = function(d_v, d_w) {
+                        var d_u = function(d_v, d_w, itemSpecifier) {
                             var d_x = d_v.children, d_y = Uize.keys(d_x).sort();
                             d_w++;
                             var obj = {
@@ -4163,16 +4174,24 @@ Uize.module({name: 'UizeSite.Delve',required: ['UizeSite.ModulesTree', 'Uize.Wid
                                     link: d_o,
                                     expanded: d_w == 1,
                                     objectPath: d_A(m, d_v),
-                                    items: d_y.length ? Uize.map(d_y, function(d_B) {
-                                        return d_u(d_x[d_B], d_w)
+                                    items: d_y.length ? Uize.map(d_y, function(d_B, index) {
+                                        return d_u(d_x[d_B], d_w, itemSpecifier + "x" + index);
                                     }) : undefined
                                 };
                             forceObservable(obj, "expanded");
-                            //Persist entire pinned path and display to user so they can remove/add them
+                            //TODO: Persist entire pinned path and display to user so they can remove/add them
                             persistObserv(obj.expandedObserv, obj.objectPath);
+
+                            //And don't forget to make sure the observable causes the proper function to be called
+
+                            obj.expandedObserv.subscribe(function() {
+                                //Because of loops in our subscription logic... fuuuuu
+                                m.children.treeList.setItemExpanded(itemSpecifier, obj.expandedObserv());
+                            });
+
                             return obj;
                         };
-                        d_r[0] = d_u(d_s, 0);
+                        d_r[0] = d_u(d_s, 0, "0");
                     }
                     return d_r;
                 }},widgetsOnPageList: {d_n: 'All widgets on the page',d_q: function() {
@@ -4915,6 +4934,13 @@ Uize.module({name: 'UizeSite.Delve',required: ['UizeSite.ModulesTree', 'Uize.Wid
                     }
                 },treeItemClicked: function() {
                     this.set({d_bm: this.d_dt});
+                    var objectPath = this.get('objectInspectedPath');
+                    //May be a faster way to do this, but speed doesn't really matter in this case
+                    this.children.treeList.traverseTree({itemHandler: function(obj, id) {
+                        if(obj.objectPath === objectPath) {
+                            obj.expandedObserv(!obj.expandedObserv());
+                        }
+                    }});
                 }},stateProperties: {
                     d_c9: {name: 'baseUrl',value: ''},
                     d_ba: {onChange: d_9},
